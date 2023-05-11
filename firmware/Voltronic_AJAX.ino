@@ -268,7 +268,7 @@ void setup() {
   client.setServer(mqtt_server, 1883);
   client.setCallback(callback);
   SPIFFS.begin(FORMAT_SPIFFS_IF_FAILED);                              // Инициализируем работу с файловой системой
-  ftpSrv.begin("admin", "1533");                                      // Поднимаем FTP-сервер для удобства отладки работы HTML (логин: relay, пароль: relay)
+  ftpSrv.begin("admin", "1234");                                      // Поднимаем FTP-сервер для удобства отладки работы HTML (логин: relay, пароль: relay)
 
 }
 
