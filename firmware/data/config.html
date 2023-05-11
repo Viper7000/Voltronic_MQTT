@@ -1,0 +1,169 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/> 
+	<meta charset="utf-8">
+	<title>ESP_Voltronic/Config</title>
+	<link rel="shortcut icon" href="ico6.png">
+	<style>
+		button,.button4 {
+			color:#1fa3ec;
+			padding: 10px 5px;
+			width: 56px;
+			font-family:verdana;
+			text-shadow: 0 1px #1fa3ec;
+			//background-color: #5db3e3;
+			//background-color: #d0d0d0;
+			border: 1px solid #666611;
+			border-radius: 3px;
+			white-space: nowrap;
+		} 
+		.button4 {
+			width: 71px;
+		} 
+		.button4b {
+			width: 71px;
+			padding: 5px 5px;
+		} 
+		.bar {
+		  padding: 5px 0px;
+		  border-radius: 5px;
+		  color: #1fa3ec;
+		  text-shadow: 0 1px #1fa3ec;
+		  background-color: #b0ffb0;
+		  margin: 0;
+		  width: 100%;
+		}
+		div {
+			margin: 5px auto 0;
+			text-align: center;
+			white-space: nowrap;
+		} 
+		body {
+			text-align: center;
+			font-family:verdana;
+		} 
+		A {
+			text-decoration: none;
+		} 
+		h1 {
+			text-align: center;
+			font-family:verdana;
+			font-weight: 100;
+			font-size: 20px;
+		} 
+		.str1, .str2, .str1b {
+			width: 300px;
+			color:white;
+			padding: 10px 0px;
+			border-radius: 3px;
+			text-shadow: 0 1px white;
+			background-color: #1fa3ec;
+			margin: 5px auto 0;
+			border: 1px solid #666611;
+		} 
+		.str2 {
+			background-color: #5191e4;
+			margin: 20px auto 0;
+			border: 1px solid #116611;
+		}
+		.str1b {
+			width: 290px;
+			padding: 5px;
+			background-color: #f0f0f0;
+		} 
+	</style>
+</head>
+<body>
+	<h1>
+		<a href="/"><img src="ico5.png" width="22" title="back"></a>
+		ESP_Voltronic / Config
+	</h1>
+	<div class="str1">ESP32 SETTINGS</div>
+	<div><a href="serverIndex" target="_blank">	<button style="width:303px;">FIRMWARE UPDATE	</button></a></div>
+	<div><a href="json" target="_blank">		<button style="width:303px;">JSON TEXT			</button></a></div>
+	
+	<div class="str2">VOLTRINIC CONFIG</div>
+	<div>
+		<button class="button4" title="Out priority">						Out =></button></a>
+		<button class="button4" title="USB" onclick="mode_set(10)" id="o0">	USB</button></a>
+		<button class="button4" title="SUB" onclick="mode_set(11)" id="o1">	SUB</button></a>
+		<button class="button4" title="SBU" onclick="mode_set(12)" id="o2">	SBU</button></a>
+	</div><!-- OFF #ef1919  ON #29e44f  -->
+	<div>
+		<button class="button4" title="SBL+" onclick="mode_set(20)" id="s0">SBL+</button></a>
+		<button class="button4" title="SBL-" onclick="mode_set(21)" id="s1">SBL-</button></a>
+		<button class="button4" title="SLB+" onclick="mode_set(22)" id="s2">SLB+</button></a>
+		<button class="button4" title="SLB-" onclick="mode_set(23)" id="s3">SLB-</button></a>
+	</div><!-- OFF #ef1919  ON #29e44f  -->
+	<div class="str2">BATTERIES VOLTAGE/CURRENT</div>
+	<div>
+		<button title="Battery under voltage, V"><span id="bs1">42.0</span></button>
+		<button title="Battery re-charge voltage, V"><span id="bs2">44.0</span></button>
+		<button title="Battery re-discharge voltage, V"><span id="bs3">54.0</span></button>
+		<button title="Battery float voltage, V"><span id="bs4">54.5</span></button>
+		<button title="Battery bulk voltage, V"><span id="bs5">56.8</span></button>
+	</div>
+	<div>
+		<button class="button4" title="Max AC charging current, A"><span id="a1">20</span></button></a>
+		<button class="button4" title="Max charging current, A"><span id="a2">10</span></button></a>
+		<button class="button4" title="Battery type"><span id="u1">-</span></button></a>
+		<button class="button4" title="Temp heatsink, °C"><span id="u2">-</span></button></a>
+	</div><!-- OFF #ef1919  ON #29e44f  -->
+	<div style="margin-top: 20px;">
+		<a href="/"><button style="width:303px;"><span id="time">00:00:00</span></button></a>
+	</div>
+	<script>
+		function mode_set(md) {
+			var request = new XMLHttpRequest();
+			var dt = new Date();
+			var cred="#ffd0d0";
+			var cyel="#ffffd0";
+			var cblu="#d0d0ff";
+			var cgre="#b0ffb0";
+			var cdar="#d0d0d0";
+			var cnor="#f0f0f0";
+			request.open('GET','/data?mode='+md,true);
+			request.onload = function() {
+				if (request.readyState == 4 && request.status == 200) {
+					var espData = JSON.parse(request.responseText);
+					if(espData.out_source_priority=="USB") document.getElementById("o0").style.backgroundColor=cdar; 
+						else document.getElementById("o0").style.backgroundColor=cnor;
+					if(espData.out_source_priority=="SUB") document.getElementById("o1").style.backgroundColor=cdar; 
+						else document.getElementById("o1").style.backgroundColor=cnor;
+					if(espData.out_source_priority=="SBU") document.getElementById("o2").style.backgroundColor=cdar; 
+						else document.getElementById("o2").style.backgroundColor=cnor;
+					
+					if(espData.charger_source_priority=="SBL+") document.getElementById("s0").style.backgroundColor=cdar; 
+						else document.getElementById("s0").style.backgroundColor=cnor;
+					if(espData.charger_source_priority=="SBL-") document.getElementById("s1").style.backgroundColor=cdar; 
+						else document.getElementById("s1").style.backgroundColor=cnor;
+					if(espData.charger_source_priority=="SLB+") document.getElementById("s2").style.backgroundColor=cdar; 
+						else document.getElementById("s2").style.backgroundColor=cnor;
+					if(espData.charger_source_priority=="SLB-") document.getElementById("s3").style.backgroundColor=cdar; 
+						else document.getElementById("s3").style.backgroundColor=cnor;
+					
+					document.getElementById("bs1").innerHTML = espData.batt_under_voltage.toFixed(1);
+					document.getElementById("bs2").innerHTML = espData.batt_recharge_voltage.toFixed(1);
+					document.getElementById("bs3").innerHTML = espData.batt_redischarge_voltage.toFixed(1);
+					document.getElementById("bs4").innerHTML = espData.batt_float_voltage.toFixed(1);
+					document.getElementById("bs5").innerHTML = espData.batt_bulk_voltage.toFixed(1);
+					document.getElementById("a1").innerHTML =  espData.max_grid_charge_current;
+					document.getElementById("a2").innerHTML =  espData.max_charge_current;
+					document.getElementById("u1").innerHTML =  espData.batt_type;
+					document.getElementById("u2").innerHTML =  espData.temp_heatsink+" °C";
+
+					document.getElementById("time").innerHTML = dt.toLocaleTimeString();//espData.time;
+				}
+			}
+			request.send();
+		}
+		
+		setInterval(function() {
+			mode_set();
+		}, 1000);
+		
+		document.addEventListener('DOMContentLoaded', mode_set());	
+	</script>
+</body>
+</html>		
