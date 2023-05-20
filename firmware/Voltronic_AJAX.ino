@@ -517,7 +517,7 @@ void PubConfig() {
   client.print(jsonSen); client.endPublish();
 
   //SSID
-  jsonSen = "{\"device_class\": \"signal_strength\",\"name\": \"Voltronic_SSID\",\"state_topic\": \"ha/ESP_Voltronic/SSID\",\"unique_id\": \"ESP_Voltronic_SSID\"," + jsonDev;
+  jsonSen = "{\"icon\": \"mdi:wifi-cog\",\"name\": \"Voltronic_SSID\",\"state_topic\": \"ha/ESP_Voltronic/SSID\",\"unique_id\": \"ESP_Voltronic_SSID\"," + jsonDev;
   client.beginPublish("homeassistant/sensor/ESP_Voltronic/SSID/config", jsonSen.length(), false);
   client.print(jsonSen); client.endPublish();
 
