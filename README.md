@@ -20,7 +20,7 @@ The board was developed for home use. The program EasyEDA was used. A full descr
 
 ## Печатная плата и сборка устройства
 
-В папке prodaction есть [Gerber](prodaction/Gerber_Voltronic_ESP32_v1.1.zip) для заказа печатной платы и [BOM](prodaction/BOM_Board1_PCB1_2023-05-11.xlsx) файл компонентов.
+В папке prodaction есть [Gerber](production/Gerber_Voltronic_ESP32_v1.1.zip) для заказа печатной платы и [BOM](production/BOM_Board1_PCB1_2023-05-11.xlsx) файл компонентов.
 Я заказзывал платы на https://jlcpcb.com . Изготовляем плату и собираем. Внешний вид платы на картинке.
 
 ![плата](img/11.jpg "вид впаты лицо")
