@@ -1,0 +1,275 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/> 
+	<meta charset="utf-8">
+	<title>ESP_Voltronic</title>
+	<link rel="shortcut icon" href="ico6.png">
+	<style>
+		button,.button4 {
+			color:#1fa3ec;
+			padding: 10px 5px;
+			width: 56px;
+			font-family:verdana;
+			text-shadow: 0 1px #1fa3ec;
+			//background-color: #5db3e3;
+			border: 1px solid #666611;
+			border-radius: 3px;
+			white-space: nowrap;
+		} 
+		.button4 {
+			width: 71px;
+		} 
+		.button4b {
+			width: 71px;
+			padding: 5px 5px;
+		} 
+		.bar {
+		  padding: 5px 0px;
+		  border-radius: 5px;
+		  color: #1fa3ec;
+		  text-shadow: 0 1px #1fa3ec;
+		  background-color: #b0ffb0;
+		  margin: 0;
+		  width: 100%;
+		}
+		div {
+			margin: 5px auto 0;
+			text-align: center;
+			white-space: nowrap;
+		} 
+		body {
+			text-align: center;
+			font-family:verdana;
+		} 
+		A {
+			text-decoration: none;
+		} 
+		h1 {
+			text-align: center;
+			font-family:verdana;
+			font-weight: 100;
+			font-size: 20px;
+		} 
+		.str1, .str2, .str1b {
+			width: 300px;
+			color:white;
+			padding: 10px 0px;
+			border-radius: 3px;
+			text-shadow: 0 1px white;
+			background-color: #1fa3ec;
+			margin: 5px auto 0;
+			border: 1px solid #666611;
+		} 
+		.str2 {
+			background-color: #5191e4;
+			margin: 20px auto 0;
+			border: 1px solid #116611;
+		}
+		.str1b {
+			width: 290px;
+			padding: 5px;
+			background-color: #f0f0f0;
+		} 
+	</style>
+</head>
+<body>
+	<h1>
+		<a href="json" target="_blank"><img src="ico5.png" width="22" title="json"></a>
+		ESP_Voltronic 
+		<!-- <a href="serverIndex" target="_blank"><img src="ico7.png" width="25" title="config"></a>-->
+		<a href="config.html"><img src="ico7.png" width="25" title="config"></a>
+	</h1>
+	<div class="str1">BATTERIES HEALTH</div>
+	<div>
+		<button class="button4b" title="Battery1, V"><div id="b1" class="bar">13.70</div></button></a>
+		<button class="button4b" title="Battery2, V"><div id="b2" class="bar" style="width: 60%; background-color: #ffffd0">13.71</div></button></a>
+		<button class="button4b" title="Battery3, V"><div id="b3" class="bar" style="width: 20%; background-color: #ffd0d0">13.64</div></button></a>
+		<button class="button4b" title="Battery4, V"><div id="b4" class="bar" style="width: 80%; background-color: #d0d0ff">13.55</div></button></a>
+	</div><!-- OFF #ef1919  ON #29e44f  -->
+	<div class="str1b" title="Barretys, V"><div id="bs" class="bar">54,5 V</div></div>
+	<div class="str1b" title="Capacity, %"><div id="cap" class="bar">100 %</div></div>
+	
+	<div class="str2">BATTERIES CURRENT/POWER</div>
+	<div>
+		<button class="button4b" title="Battery charging current, A"><div id="a3" class="bar" style="width: 20%">10</div></button></a>
+		<button class="button4" title="Battery charging power, W"><span id="a5">50</span></button></a>
+		<button class="button4b" title="Battery discharge current, A"><div id="a4" class="bar" style="width: 60%; background-color: #ffffd0">20</div></button></a>
+		<button class="button4" title="Battery discharge power, W"><span id="a6">100</span></button></a>
+	</div><!-- OFF #ef1919  ON #29e44f  -->
+	<div class="str2">PV VOLTAGE/POWER</div>
+	<div>
+		<button class="button4" title="PV Input voltage, V"><span id="pv1">82.4</span></button></a>
+		<button class="button4" title="PV Charging current, A"><span id="pv2">1</span></button></a>
+		<button class="button4b" title="PV Input current,A"><div id="pv4" class="bar" style="width: 20%">10</div></button></a>
+		<button class="button4b" title="PV Input power, W"><div id="pv3" class="bar" style="width: 20%">10</div></button></a>
+		<!-- <button class="button4" title="Charger source priority"><span id="pv4">SBL</span></button></a>-->
+	</div><!-- OFF #ef1919  ON #29e44f  -->
+	<div class="str2">AC VOLTAGE/POWER</div>
+	<div>
+		<button class="button4" title="Grid voltage, V"><span id="v1">243.6</span> V</button></a>
+		<button class="button4" title="Grid frequency, Hz"><span id="v2">50.0</span> Hz</button></a>
+		<button class="button4" title="AC output voltage, V"><span id="v3">230.3</span> V</button></a>
+		<button class="button4" title="AC output frequency, Hz"><span id="v4">50.0</span> Hz</button></a>
+	</div>
+	<div>
+		<button class="button4b" title="Output load, %"><div id="p3" class="bar">11 %</div> </button></a>
+		<button class="button4b" title="Battery capacity, %"><div id="p4"  class="bar">100 %</div></button></a>
+		<button class="button4" title="AC output apparent power, VA"><span id="p1">552</span> VA</button></a>
+		<button class="button4" title="AC output active power, W"><span id="p2">518</span> W</button></a>
+	</div>
+	<div style="margin-top: 20px;">
+		<a href="/"><button style="width:303px;"><span id="time">00:00:00</span></button></a>
+	</div>
+	<script>
+		function mode_set(md) {
+			var request = new XMLHttpRequest();
+			var dt = new Date();
+			var bat1=11.5;
+			var bat2=13.4;
+			var bat3=13.8;
+			var barwidth;
+			var cred="#ffd0d0";
+			var cyel="#ffffd0";
+			var cblu="#d0d0ff";
+			var cgre="#b0ffb0";
+			var cpower,dpower,pvcur;
+			request.open('GET','/data?mode='+md,true);
+			request.onload = function() {
+				if (request.readyState == 4 && request.status == 200) {
+					var espData = JSON.parse(request.responseText);
+					document.getElementById("b1").innerHTML =  espData.batt1.toFixed(2);
+					if(espData.batt1<bat1) document.getElementById("b1").style.backgroundColor=cred; //красный
+						else if(espData.batt1<bat2) document.getElementById("b1").style.backgroundColor=cyel; //желтый
+							else if(espData.batt1<bat3) document.getElementById("b1").style.backgroundColor=cgre; //зеленый
+								else document.getElementById("b1").style.backgroundColor=cblu; //синий
+					barwidth = (espData.batt1-11)*28,5;
+					if(barwidth<0) barwidth=0;
+					if(barwidth>100) barwidth=100;
+					document.getElementById("b1").style.width=(barwidth+"%");
+					
+					document.getElementById("b2").innerHTML =  espData.batt2.toFixed(2);
+					if(espData.batt2<bat1) document.getElementById("b2").style.backgroundColor=cred; //красный
+						else if(espData.batt2<bat2) document.getElementById("b2").style.backgroundColor=cyel; //желтый
+							else if(espData.batt2<bat3) document.getElementById("b2").style.backgroundColor=cgre; //зеленый
+								else document.getElementById("b2").style.backgroundColor=cblu; //синий
+					barwidth = (espData.batt2-11)*28,5;
+					if(barwidth<0) barwidth=0;
+					if(barwidth>100) barwidth=100;
+					document.getElementById("b2").style.width=(barwidth+"%");
+					
+					document.getElementById("b3").innerHTML =  espData.batt3.toFixed(2);
+					if(espData.batt3<bat1) document.getElementById("b3").style.backgroundColor=cred; //красный
+						else if(espData.batt3<bat2) document.getElementById("b3").style.backgroundColor=cyel; //желтый
+							else if(espData.batt3<bat3) document.getElementById("b3").style.backgroundColor=cgre; //зеленый
+								else document.getElementById("b3").style.backgroundColor=cblu; //синий
+					barwidth = (espData.batt3-11)*28,5;
+					if(barwidth<0) barwidth=0;
+					if(barwidth>100) barwidth=100;
+					document.getElementById("b3").style.width=(barwidth+"%");
+					
+					document.getElementById("b4").innerHTML =  espData.batt4.toFixed(2);
+					if(espData.batt4<bat1) document.getElementById("b4").style.backgroundColor=cred; //красный
+						else if(espData.batt4<bat2) document.getElementById("b4").style.backgroundColor=cyel; //желтый
+							else if(espData.batt4<bat3) document.getElementById("b4").style.backgroundColor=cgre; //зеленый
+								else document.getElementById("b4").style.backgroundColor=cblu; //синий
+					barwidth = (espData.batt4-11)*28,5;
+					if(barwidth<0) barwidth=0;
+					if(barwidth>100) barwidth=100;
+					document.getElementById("b4").style.width=(barwidth+"%");
+					
+					document.getElementById("bs").innerHTML =  espData.voltage_batt.toFixed(1)+" V";
+					if(espData.voltage_batt<46) document.getElementById("bs").style.backgroundColor=cred; //красный
+						else if(espData.voltage_batt<54) document.getElementById("bs").style.backgroundColor=cyel; //желтый
+							else if(espData.voltage_batt<=55) document.getElementById("bs").style.backgroundColor=cgre; //зеленый
+								else document.getElementById("bs").style.backgroundColor=cblu; //синий
+					barwidth = (espData.voltage_batt-espData.batt_under_voltage)*(100/(58-espData.batt_under_voltage)); //макс 60
+					if(barwidth<0) barwidth=0;
+					if(barwidth>100) barwidth=100;
+					document.getElementById("bs").style.width=(barwidth+"%");
+					
+					document.getElementById("cap").innerHTML = (espData.batt_capacity_m+" %");
+					if(espData.batt_capacity_m<10) document.getElementById("cap").style.backgroundColor=cred; //красный
+						else if(espData.batt_capacity_m<90) document.getElementById("cap").style.backgroundColor=cyel; //желтый
+							else document.getElementById("cap").style.backgroundColor=cgre; //зеленый
+					barwidth = espData.batt_capacity_m;
+					document.getElementById("cap").style.width=(barwidth+"%");
+					
+					//document.getElementById("bs1").innerHTML = espData.batt_under_voltage.toFixed(1);
+					//document.getElementById("bs2").innerHTML = espData.batt_recharge_voltage.toFixed(1);
+					//document.getElementById("bs3").innerHTML = espData.batt_redischarge_voltage.toFixed(1);
+					//document.getElementById("bs4").innerHTML = espData.batt_float_voltage.toFixed(1);
+					//document.getElementById("bs5").innerHTML = espData.batt_bulk_voltage.toFixed(1);
+					//document.getElementById("a1").innerHTML =  espData.max_grid_charge_current;
+					//document.getElementById("a2").innerHTML =  espData.max_charge_current;
+					document.getElementById("a3").innerHTML =  espData.batt_charge_current+" A";
+					if(espData.batt_charge_current>20) barwidth = 20;
+						else barwidth = espData.batt_charge_current * 5;
+					document.getElementById("a3").style.width=(barwidth+"%");
+					
+					//cpower=espData.batt_charge_current*espData.voltage_batt;
+					document.getElementById("a5").innerHTML =  Math.round(espData.batt_charge_current*espData.voltage_batt)+" W";
+					
+					document.getElementById("a4").innerHTML =  espData.batt_discharge_current+" A";
+					if(espData.batt_discharge_current>40) barwidth = 40;
+						else barwidth = espData.batt_discharge_current * 2.5;
+					document.getElementById("a4").style.width=(barwidth+"%");
+					
+					document.getElementById("a6").innerHTML =  Math.round(espData.batt_discharge_current*espData.voltage_batt)+" W";
+					
+					document.getElementById("pv1").innerHTML =  espData.pv_input_voltage.toFixed(0)+" V";
+					document.getElementById("pv2").innerHTML =  espData.pv_input_current+" A";
+					
+					document.getElementById("pv3").innerHTML =  espData.pv_input_watts+" W";
+					if(espData.pv_input_watts<300) document.getElementById("pv3").style.backgroundColor=cyel; //желтый
+						else document.getElementById("pv3").style.backgroundColor=cgre; //зеленый
+					barwidth = espData.pv_input_watts/20; //40; При 4000
+					if(barwidth>100) barwidth=100;
+					document.getElementById("pv3").style.width=(barwidth+"%");
+					
+					if(espData.pv_input_voltage>0) pvcur=Math.round(espData.pv_input_watts/espData.pv_input_voltage);  //parseInt
+						else pvcur=0;
+					document.getElementById("pv4").innerHTML = pvcur +" A";
+					if(pvcur<16) document.getElementById("pv4").style.backgroundColor=cgre; //зеленый
+						else if(pvcur<20) document.getElementById("pv4").style.backgroundColor=cyel; //желтый
+							else document.getElementById("pv4").style.backgroundColor=cred; //красный
+					barwidth = pvcur*4; //При 25A
+					if(barwidth>100) barwidth=100;
+					document.getElementById("pv4").style.width=(barwidth+"%");
+					
+					//document.getElementById("pv4").innerHTML =  espData.charger_source_priority;
+					
+					document.getElementById("v1").innerHTML =  espData.voltage_grid.toFixed(1);
+					document.getElementById("v2").innerHTML =  espData.freq_grid.toFixed(1);
+					document.getElementById("v3").innerHTML =  espData.voltage_out.toFixed(1);
+					document.getElementById("v4").innerHTML =  espData.freq_out.toFixed(1);
+					document.getElementById("p1").innerHTML =  espData.load_va;
+					document.getElementById("p2").innerHTML =  espData.load_watt;
+					document.getElementById("p3").innerHTML =  (espData.load_percent+" %");
+					if(espData.load_percent<20) document.getElementById("p3").style.backgroundColor=cgre; //зеленый 
+						else if(espData.load_percent<50) document.getElementById("p3").style.backgroundColor=cyel; //желтый
+							else document.getElementById("p3").style.backgroundColor=cred; //красный
+					barwidth = espData.load_percent;
+					document.getElementById("p3").style.width=(barwidth+"%");
+					
+					document.getElementById("p4").innerHTML =  espData.batt_capacity+" %";
+					if(espData.batt_capacity<10) document.getElementById("p4").style.backgroundColor=cred; //красный
+						else if(espData.batt_capacity<90) document.getElementById("p4").style.backgroundColor=cyel; //желтый
+							else document.getElementById("p4").style.backgroundColor=cgre; //зеленый
+					barwidth = espData.batt_capacity;
+					document.getElementById("p4").style.width=(barwidth+"%");
+					
+					document.getElementById("time").innerHTML = dt.toLocaleTimeString();//espData.time;
+				}
+			}
+			request.send();
+		}
+		
+		setInterval(function() {
+			mode_set();
+		}, 1000);
+		
+		document.addEventListener('DOMContentLoaded', mode_set());	
+	</script>
+</body>
+</html>		

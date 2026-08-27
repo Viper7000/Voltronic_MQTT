@@ -1,0 +1,121 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/> 
+	<meta charset="utf-8">
+	<title>ESP_Voltronic/Settings</title>
+	<link rel="shortcut icon" href="ico6.png">
+	<style>
+		button,.button4{
+			color:#1fa3ec;
+			padding: 10px 5px;
+			width: 56px;
+			font-family:verdana;
+			text-shadow: 0 1px #1fa3ec;
+			//background-color: #5db3e3;
+			//background-color: #d0d0d0;
+			border: 1px solid #666611;
+			border-radius: 3px;
+			white-space: nowrap;
+		} 
+		.button4 {
+			width: 71px;
+		} 
+		.button4b {
+			width: 71px;
+			padding: 5px 5px;
+		} 
+		.bar {
+		  padding: 5px 0px;
+		  border-radius: 5px;
+		  color: #1fa3ec;
+		  text-shadow: 0 1px #1fa3ec;
+		  background-color: #b0ffb0;
+		  margin: 0;
+		  width: 100%;
+		}
+		div {
+			margin: 5px auto 0;
+			text-align: center;
+			white-space: nowrap;
+		} 
+		body {
+			text-align: center;
+			font-family:verdana;
+		} 
+		A {
+			text-decoration: none;
+		} 
+		h1 {
+			text-align: center;
+			font-family:verdana;
+			font-weight: 100;
+			font-size: 20px;
+		} 
+		.st {
+			width: 300px;
+		}
+		.str1, .str2, .str1b {
+			width: 300px;
+			color:white;
+			padding: 10px 0px;
+			border-radius: 3px;
+			text-shadow: 0 1px white;
+			background-color: #1fa3ec;
+			margin: 5px auto 0;
+			border: 1px solid #666611;
+		} 
+		.str2 {
+			background-color: #5191e4;
+			margin: 20px auto 0;
+			border: 1px solid #116611;
+		}
+		.str1b {
+			width: 290px;
+			padding: 5px;
+			background-color: #f0f0f0;
+		}
+		.input {
+			width:303px; 
+			text-align:left; 
+			padding: 0px 0px;
+			display:flex;
+		}
+		.txt {
+			padding: 10px 5px;
+			width:40%;
+		}
+		input {
+			width:70%; 
+			padding: 10px 5px;
+			border: 0px
+		}
+</style>
+</head>
+<body>
+	<h1>
+		<a href="config.html"><img src="ico5.png" width="22" title="back"></a>
+		ESP_Voltronic / Settings
+	</h1>
+	<form method="POST" action="/settingssave" enctype="multipart/form-data">
+	<div class="str1">VOLTRINIC SETTINGS</div>
+	
+	<div class="st"><button class="input">	<span class="txt">WIFi Name: </span>		<input type="text" value="MyNet"></button></div>
+	<div class="st"><button class="input">	<span class="txt">WiFi Pass: </span>		<input type="password" value="12345678"></button></div>
+	<div class="st"><button class="input">	<span class="txt">Device Name: </span>		<input type="text" value="ESP_Voltronic"></button></div>
+	<div class="st"><button class="input">	<span class="txt">MQTT Server: </span>		<input type="text" value="192.168.1.50"></button></div>
+	<div class="st"><button class="input">	<span class="txt">MQTT Port: </span>		<input type="text" value="1883"></button></div>
+	<div class="st"><button class="input">	<span class="txt">MQTT User: </span>		<input type="text" value="mqtt"></button></div>
+	<div class="st"><button class="input">	<span class="txt">MQTT Pass: </span>	<input type="text" value="mqtt"></button></div>
+	<div class="st"><button class="input">	<span class="txt">MQTT Topic: </span>		<input type="text" value="ha/ESP_Voltronic"></button></div>
+	<div class="st"><button class="input">	<span class="txt">Teleg.BotTok: </span>	<input type="text" value="N/A"></button></div>
+	<div class="st"><button class="input">	<span class="txt">Teleg.ChatID: </span>		<input type="text" value="N/A"></button></div>
+
+	<input class="str2" type="submit" value="SAVE SETTINGS">
+	
+	<div style="margin-top: 20px;">
+		<a href="/"><button style="width:303px;"><span id="time">00:00:00</span></button></a>
+	</div>
+
+</body>
+</html>		

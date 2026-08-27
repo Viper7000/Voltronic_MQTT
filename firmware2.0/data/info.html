@@ -1,0 +1,132 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/> 
+	<meta charset="utf-8">
+	<title>ESP_Voltronic/Info</title>
+	<link rel="shortcut icon" href="ico6.png">
+	<style>
+		button,.button4 {
+			color:#1fa3ec;
+			padding: 10px 5px;
+			width: 56px;
+			font-family:verdana;
+			text-shadow: 0 1px #1fa3ec;
+			//background-color: #5db3e3;
+			//background-color: #d0d0d0;
+			border: 1px solid #666611;
+			border-radius: 3px;
+			white-space: nowrap;
+		} 
+		.button4 {
+			width: 71px;
+		} 
+		.button4b {
+			width: 71px;
+			padding: 5px 5px;
+		} 
+		.bar {
+		  padding: 5px 0px;
+		  border-radius: 5px;
+		  color: #1fa3ec;
+		  text-shadow: 0 1px #1fa3ec;
+		  background-color: #b0ffb0;
+		  margin: 0;
+		  width: 100%;
+		}
+		div {
+			margin: 5px auto 0;
+			text-align: center;
+			white-space: nowrap;
+		} 
+		body {
+			text-align: center;
+			font-family:verdana;
+		} 
+		A {
+			text-decoration: none;
+		} 
+		h1 {
+			text-align: center;
+			font-family:verdana;
+			font-weight: 100;
+			font-size: 20px;
+		} 
+		.str1, .str2, .str1b {
+			width: 300px;
+			color:white;
+			padding: 10px 0px;
+			border-radius: 3px;
+			text-shadow: 0 1px white;
+			background-color: #1fa3ec;
+			margin: 5px auto 0;
+			border: 1px solid #666611;
+		} 
+		.str2 {
+			background-color: #5191e4;
+			margin: 20px auto 0;
+			border: 1px solid #116611;
+		}
+		.str1b {
+			width: 290px;
+			padding: 5px;
+			background-color: #f0f0f0;
+		} 
+	</style>
+</head>
+<body>
+	<h1>
+		<a href="config.html"><img src="ico5.png" width="22" title="back"></a>
+		ESP_Voltronic / Info
+	</h1>
+	<div class="str1">VOLTRINIC INFO</div>
+	<div><button style="width:303px; text-align:left;" title="ESP32 firmvare">					<span>ESP32 FIRM.: </span>		<span style="color:black;" id="sf">N/A</span></button></div>
+	<div><button style="width:303px; text-align:left;" title="QMN Device name">					<span>MODEL NAME: </span>		<span style="color:black;" id="s0">N/A</span></button></div>
+	<div><button style="width:303px; text-align:left;" title="QPI Device protocol ID">			<span>DEVICE PROT. ID: </span>	<span style="color:black;" id="s1">N/A</span></button></div>
+	<div><button style="width:303px; text-align:left;" title="QVFW Main CPU firmware">			<span>MAIN CPU FIRM.: </span>	<span style="color:black;" id="s2">N/A</span></button></div>
+	<div><button style="width:303px; text-align:left;" title="QVFW2 SCC CPU firmware">			<span>SCC CPU FIRM.: </span>	<span style="color:black;" id="s3">N/A</span></button></div>
+	<div><button style="width:303px; text-align:left;" title="QVFW3 Remote panel firmware">		<span>REM. PANEL FIRM.: </span>	<span style="color:black;" id="s4">N/A</span></button></div>
+	<div><button style="width:303px; text-align:left;" title="VERFW: Bluetooth version">		<span>BLUETOOTH VERS.: </span>	<span style="color:black;" id="s5">N/A</span></button></div>
+	<div><button style="width:303px; text-align:left;" title="QMOD Device mode">				<span>DEVICE MODE: </span>		<span style="color:black;" id="s6">N/A</span></button></div>
+	<div><button style="width:303px; text-align:left;" title="QID Devise serial number">		<span>DEVICE SERIAL: </span>	<span style="color:black;" id="s7">N/A</span></button></div>
+	<div><button style="width:303px; text-align:left;" title="QSID Devise serial number long">	<span>SER. LONG: </span>		<span style="color:black;" id="s8">N/A</span></button></div>
+	<div><button style="width:303px; text-align:left;" title="Device uptime">					<span>UPTIME: </span>			<span style="color:black;" id="s9">N/A</span></button></div>
+	
+	<div style="margin-top: 20px;">
+		<a href="/"><button style="width:303px;"><span id="time">00:00:00</span></button></a>
+	</div>
+	<script>
+		function mode_set(md) {
+			var request = new XMLHttpRequest();
+			var dt = new Date();
+			request.open('GET','/data?mode='+md,true);
+			request.onload = function() {
+				if (request.readyState == 4 && request.status == 200) {
+					var espData = JSON.parse(request.responseText);
+					
+					document.getElementById("sf").innerHTML = espData.ESP32_firmvare;
+					document.getElementById("s0").innerHTML = espData.QMN_Query_model_name;
+					document.getElementById("s1").innerHTML = espData.QPI_Device_protocol_ID;
+					document.getElementById("s2").innerHTML = espData.QVFW_Main_CPU_Firmware;
+					document.getElementById("s3").innerHTML = espData.QVFW2_SCC_CPU_Firmware;
+					document.getElementById("s4").innerHTML = espData.QVFW3_Another_CPU_remote_panel;
+					document.getElementById("s5").innerHTML = espData.VERFW_Bluetooth_version;
+					document.getElementById("s6").innerHTML = espData.Mode;
+					document.getElementById("s7").innerHTML = espData.QID_Device_serial_number;
+					document.getElementById("s8").innerHTML = espData.QSID_Device_serial_number_long;
+					document.getElementById("s9").innerHTML = espData.Uptime;
+
+					document.getElementById("time").innerHTML = dt.toLocaleTimeString();//espData.time;
+				}
+			}
+			request.send();
+		}
+		
+		setInterval(function() {
+			mode_set();
+		}, 1000);
+		
+		document.addEventListener('DOMContentLoaded', mode_set());	
+	</script>
+</body>
+</html>		
