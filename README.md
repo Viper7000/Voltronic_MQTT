@@ -64,6 +64,30 @@ The board was developed for home use. The program EasyEDA was used. A full descr
 * NTP сервер времени. У меня прописан локальный.
 * Дополнительно я получаю время от HA. Там стоит автоматизация отправлять на MQTT время каждый 10 сек
 
+<details>
+<summary>Автоматизация времени в HA</summary>
+
+```yaml
+alias: Время MQTT
+description: ""
+triggers:
+  - seconds: /10
+    trigger: time_pattern
+conditions: []
+actions:
+  - action: mqtt.publish
+    metadata: {}
+    data:
+      evaluate_payload: false
+      qos: 0
+      retain: false
+      payload: "{{states.sensor.time.state}}"
+      topic: ha/time
+mode: single
+```
+
+</details>
+
 Далее компилирует скерч и заливаем в ESP. 
 > :memo: **Настройки должны быть:** ESP32 Dev Module, Default 4Mb with spiffs (1.2Mb APP/1.5Mb SPIFFS), 240Mhz
 
